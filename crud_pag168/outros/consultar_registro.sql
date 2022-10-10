@@ -1,0 +1,1 @@
+SELECT * FROM tbclientes where uf='SP';
