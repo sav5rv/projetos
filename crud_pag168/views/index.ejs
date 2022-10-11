@@ -18,9 +18,19 @@
 		  </tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="4">Nenhum cliente cadastrado.</td>
-        </tr>
+        <% if(!results || result.length == 0) { %>          
+            <tr>
+              <td colspan="4">Nenhum cliente cadastrado.</td>
+            </tr>
+        <% } else {
+          results.forEach(function(cliente) { %> <!-- results foi iterado no arq routes/index.js Pág 202-->
+            <tr>
+              <td style="width:50%"><%=cliente.nome %></td>
+              <td style="width:15%"><%=cliente.idade %></td>
+              <td style="width:15%"><%=cliente.uf %></td>
+              <td><!-- em breve --></td>
+            </tr>
+        <% })
       </tbody>
       <tfoot>
         <tr>

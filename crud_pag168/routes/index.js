@@ -2,9 +2,20 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async function(req, res) {
+  try {
+    const results = await global.db.selectClientes();
+    console.log(results);
+    res.render('index', {results});
+  }
+
+  catch (error) {
+    res.redirect('/?erro=' + error);
+  }
+
+  //res.render('index', { title: 'Express' });
 });
+
 
 /* GET new page. */
 router.get('/new', function(req, res, next) {

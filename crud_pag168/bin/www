@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 
+/* Chamar o banco dados pág 200*/
+
+global.db = require('../db');
+
+
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
+var app   = require('../app');
 var debug = require('debug')('crud-pag168:server');
-var http = require('http');
+var http  = require('http');
 
 /**
  * Get port from environment and store in Express.
