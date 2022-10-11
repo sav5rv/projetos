@@ -10,22 +10,24 @@ async function connect() {
         port: 3306,
         user: 'root',
         password: 'mysql',
-        database: 'bd_crud_pag168' 
+        database: 'bd_crud_pag168'
     });
 
     console.log('Conectou no MySQL!');
 
     global.connection = connection;
 
-    return global.connection; 
+    return global.connection;
 }
 
 connect();
- 
+
 async function selectClientes() {
-    const conn   = await connect();
-    const [rows] = await conn.query('SELECT * FROM tb_clientes;');
+    const conn = await connect();
+    const [rows] = await conn.query('SELECT * FROM tbclientes;');
     return rows;
 }
 
-module.exports = {selectClientes};
+module.exports = {
+    selectClientes
+};
