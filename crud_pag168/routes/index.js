@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+
+
 /* GET home page. */
 router.get('/', async function (req, res) {
   try {
@@ -17,6 +19,7 @@ router.get('/', async function (req, res) {
 });
 
 
+
 /* GET new page. */
 router.get('/new', function (req, res, next) {
   res.render('new', {
@@ -25,10 +28,29 @@ router.get('/new', function (req, res, next) {
   });
 });
 
+
+
 /* POST new page. */
-router.post('/new', function (req, res, next) {
-  //futuramente vamos salvar o cliente aqui
-  res.redirect('/?new=true');
+router.post('/new', async function (req, res) {
+  //salvar o cliente aqui pág 206
+  const nome  = req.body.nome;
+  const idade = !req.body.idade ? null : parseInt(req.body.idade);
+  const uf    = req.body.uf;
+
+  try {
+    await global.db.insertCliente({nome, idade, uf});
+    res.redirect('/?new=true');
+  }
+  catch (error) {
+    res.redirect('/?erro=' + error);
+  }
+  
 });
 
+
+
+/* GET edit page. */
+router.get('/edit/:id', async function (req, res) {
+  
+})
 module.exports = router;

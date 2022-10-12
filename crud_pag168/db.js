@@ -26,8 +26,25 @@ async function selectClientes() {
     const conn = await connect();
     const [rows] = await conn.query('SELECT * FROM tbclientes;');
     return rows;
+};
+
+
+/* pág 204 */
+async function insertCliente(cliente) {
+    const conn = await connect();
+    const sql = "INSERT INTO tbclientes(nome,idade,uf) VALUES (?,?,?);";
+    return await conn.query(sql, [cliente.nome, cliente.idade, cliente.uf]); }
+
+
+/* pág 207 */
+async function selectCliente(id) {
+    const conn = await connect();
+    const sql = "SELECT * FROM tbclientes WHERE id=?";
+    const [rows] = await conn.query(sql, [id]);
+    return rows && rows.length > 0 ? rows[0] : {};
 }
 
+
 module.exports = {
-    selectClientes
+    selectClientes, insertCliente, selectCliente
 };
