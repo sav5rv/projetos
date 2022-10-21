@@ -31,9 +31,12 @@ async function selectClientes() {
 
 /* pág 204 */
 async function insertCliente(cliente) {
-    const conn = await connect();
-    const sql = "INSERT INTO tbclientes(nome,idade,uf) VALUES (?,?,?);";
-    return await conn.query(sql, [cliente.nome, cliente.idade, cliente.uf]); }
+    const conn   = await connect();
+    const sql    = "INSERT INTO tbclientes(nome,idade,uf) VALUES (?,?,?);";
+    const values = [cliente.nome,cliente.idade,cliente.uf];
+    return await conn.query(sql, values);
+ };
+
 
 
 /* pág 207 */
@@ -45,6 +48,21 @@ async function selectCliente(id) {
 }
 
 
-module.exports = {
-    selectClientes, insertCliente, selectCliente
-};
+/*pág 213 */
+async function updateCliente(id, cliente){
+    const conn = await connect();
+    const sql = "UPDATE tbclientes SET nome=?,idade=?,uf=? WHERE id=?";
+    const values = [cliente.nome,cliente.idade,cliente.uf,id];
+    return await conn.query(sql, values);
+}
+
+
+async function deleteCliente(id) {
+    const conn = await connect(); 
+    return await conn.query('DELETE FROM tbclientes WHERE id=?;', [id]);
+}
+
+
+module.exports = { 
+    selectClientes, selectCliente, insertCliente, updateCliente, deleteCliente
+}

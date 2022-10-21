@@ -30,7 +30,10 @@
         <td style="width:50%"><%=cliente.nome  %></td>
         <td style="width:15%"><%=cliente.idade %></td>
         <td style="width:15%"><%=cliente.uf    %></td>
-        <td style="width:15%"><a href="/edit/<%=cliente.id %>">Editar</a></td> <!-- pág 207 -->
+        <td style="width:15%">
+          <a href="/edit/<%=cliente.id%>">Editar</a>
+          <a href="/delete/<%= cliente.id %>" onclick="return confirm('Tem certeza?');">Excluir</a>
+        </td> <!-- pág 207 e 215 -->
       </tr>
       <% })
         } %>
